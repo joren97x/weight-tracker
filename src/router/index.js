@@ -15,15 +15,15 @@ onAuthStateChanged(auth, (user) => {
     }
   })
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(process.env.BASE_URL),
     routes: [
         {
-            path: '/weight-tracker/',
+            path: '/',
             name: 'Home',
             component: Home
         },
         {
-            path: '/weight-tracker/login',
+            path: '/login',
             name: 'Login',
             component: Login,
             beforeEnter: (to, from, next) => {
@@ -39,7 +39,7 @@ const router = createRouter({
             }
         },
         {
-            path: '/weight-tracker/register',
+            path: '/register',
             name: 'Register',
             component: Register,
             beforeEnter: (to, from, next) => {
