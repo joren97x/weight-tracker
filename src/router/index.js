@@ -18,12 +18,12 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
-            path: '/',
+            path: '/weight-tracker/',
             name: 'Home',
             component: Home
         },
         {
-            path: '/login',
+            path: '/weight-tracker/login',
             name: 'Login',
             component: Login,
             beforeEnter: (to, from, next) => {
@@ -39,7 +39,7 @@ const router = createRouter({
             }
         },
         {
-            path: '/register',
+            path: '/weight-tracker/register',
             name: 'Register',
             component: Register,
             beforeEnter: (to, from, next) => {
