@@ -121,8 +121,8 @@
     <v-row justify="end" class="mt-6" v-else>
         <v-btn prepend-icon="mdi-login" color="blue" variant="text" @click="router.push('/login')">Login</v-btn>
     </v-row>
-    <v-row justify="center mt-2">
-        <v-card border width="69%" title="Weight Tracker" class="my-6">
+    <v-row justify="center mt-2">   
+        <v-card border title="Weight Tracker" class="my-6">
            <v-card-item>
                 <v-alert
                     border="start"

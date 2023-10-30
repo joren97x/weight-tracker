@@ -37,23 +37,27 @@
 <template>
    
     <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg">
-        <v-card class="mx-auto px-6" style="margin-top: 4%;" max-width="500" title="Login">
-            <v-card-item>
-                <v-form @submit.prevent>
-                    <v-text-field v-model="email" class="mb-2" clearable label="Email"></v-text-field>
-                    <v-text-field v-model="password" type="password" clearable label="Password" placeholder="Enter your password"></v-text-field>
-                    <p class="text-red" v-if="errorMsg">{{ errorMsg }}</p>
-                    <br>
-                    <v-btn block color="success" :loading="loading" :disabled="loading" size="large" type="submit" variant="elevated" @click="signIn">
-                        Sign In
-                    </v-btn>
-                    <router-link to="/register" style="text-decoration: none;">
-                        <v-btn block color="blue" class="my-2" size="large" type="submit" variant="elevated">
-                            Create Account
-                        </v-btn>
-                    </router-link>
-                </v-form>
-            </v-card-item>
-        </v-card>
+        <v-row justify="center">
+            <v-col cols="10" lg="5">
+                <v-card class="mx-auto px-6" style="margin-top: 4%;" max-width="500" title="Login">
+                    <v-card-item>
+                        <v-form @submit.prevent>
+                            <v-text-field v-model="email" class="mb-2" clearable label="Email"></v-text-field>
+                            <v-text-field v-model="password" type="password" clearable label="Password" placeholder="Enter your password"></v-text-field>
+                            <p class="text-red" v-if="errorMsg">{{ errorMsg }}</p>
+                            <br>
+                            <v-btn block color="success" :loading="loading" :disabled="loading" size="large" type="submit" variant="elevated" @click="signIn">
+                                Sign In
+                            </v-btn>
+                            <router-link to="/register" style="text-decoration: none;">
+                                <v-btn block color="blue" class="my-2" size="large" type="submit" variant="elevated">
+                                    Create Account
+                                </v-btn>
+                            </router-link>
+                        </v-form>
+                    </v-card-item>
+                </v-card>
+            </v-col>
+        </v-row>
     </v-parallax>
 </template>
