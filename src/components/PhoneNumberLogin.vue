@@ -2,38 +2,17 @@
 
     import {ref, onMounted} from 'vue'
     import {useRouter} from 'vue-router'
-    import { getAuth, signInWithEmailAndPassword, RecaptchaVerifier, signInWithPopup, FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
+    import { getAuth, signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
     
     const errorMsg = ref('')
     const router = useRouter()
-    const handleFacebookSignIn = () => {
-        const provider = new FacebookAuthProvider();
-        signInWithPopup(getAuth(), provider)
-    }
-
-    const handleGoogleSignIn = () => {
-        const provider = new GoogleAuthProvider();
-        signInWithPopup(getAuth(), provider)
-    }
-    
-    const email = ref('')
-    const password = ref('')
+ 
+    const number = '+639168290756'
     const loading = ref(false)
-    const signIn = () => {
-        loading.value = true
-        const auth = getAuth();
-        signInWithEmailAndPassword(auth, email.value, password.value)
-            .then((userCredential) => {
-                router.push('/')
-            })
-            .catch((error) => {
-                loading.value = false
-                errorMsg.value = error
-            })
-    }
-
+    let appVerifier
+    console.log(number)
     onMounted(() => {
-        window.recaptchaVerifier = new RecaptchaVerifier(getAuth(), 'recaptcha-container', {
+        appVerifier = new RecaptchaVerifier(getAuth(), 'recaptcha-container', {
             'size': 'normal',
             'callback': (response) => {
                 alert("FORDA GO")
@@ -43,6 +22,23 @@
             }
         })
     })
+
+    const signIn = () => {
+        loading.value = true
+        signInWithPhoneNumber(getAuth(), number, appVerifier)
+            .then((confirmationResult) => {
+            // SMS sent. Prompt user to type the code from the message, then sign the
+            // user in with confirmationResult.confirm(code).
+            console.log(confirmationResult)
+                alert("CODE SEND?")
+            window.confirmationResult = confirmationResult;
+            }).catch((error) => {
+            // Error; SMS not sen
+            console.log(error)
+            console.log(error.message)
+            alert("ERROR PRE")
+        })
+    }
 
 </script>
 
@@ -54,8 +50,7 @@
                 <v-card class="mx-auto px-6" style="margin-top: 4%;" max-width="500" title="Login">
                     <v-card-item>
                         <v-form @submit.prevent>
-                            <v-text-field v-model="email" class="mb-2" clearable label="Email"></v-text-field>
-                            <v-text-field v-model="password" type="password" clearable label="Password" placeholder="Enter your password"></v-text-field>
+                            <v-text-field v-model="number" class="mb-2" clearable label="Phone number" ></v-text-field>
                             <p class="text-red" v-if="errorMsg">{{ errorMsg }}</p>
                             <br>
                             <div id="recaptcha-container"></div>

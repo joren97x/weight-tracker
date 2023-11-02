@@ -3,6 +3,7 @@ import {ref} from 'vue'
 import Home from '../components/WeightTracker.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
+import PhoneNumberLogin from '../components/PhoneNumberLogin.vue'
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 
 const auth = getAuth()
@@ -21,6 +22,11 @@ const router = createRouter({
             path: '/',
             name: 'Home',
             component: Home
+        },
+        {
+            path: '/phone-number-login',
+            name: 'PhoneNumberLogin',
+            component: PhoneNumberLogin
         },
         {
             path: '/login',
